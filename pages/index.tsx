@@ -24,20 +24,19 @@ export default function Home({handleCredChange, handleLogin}: Props) {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Native WebRTC API with NextJS and Pusher as the Signalling Server</title>
-                <meta name="description" content="Use Native WebRTC API for video conferencing"/>
+                <title>Let's chat now!</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
-            <form className={styles.main} onSubmit={handleLogin}>
-                <h1>Lets join a room!</h1>
-                <input onChange={(event) => setUserName(event.target.value)}
-                       className={styles['room-name']}
-                       placeholder="Enter Username"/>
+            <form className={styles.main} onSubmit={handleLogin} autoComplete="off">
+                <h1>📽️📞 CallMeNow</h1>
+                <h5>WebRTC API with NextJS and Pusher</h5>
+                
                 <input onChange={(event: EventProps) => setRoomName(event.target.value)}
                        value={roomName}
                        className={styles['room-name']}
-                       placeholder="Enter Room Name"/>
+                       placeholder="Enter Room Name"
+                       data-lpignore="true"/>
                 <button type="submit" className={styles['join-room']}>Join Room</button>
             </form>
         </div>

@@ -283,21 +283,21 @@ export default function Room({userName, roomName}: Props) {
         <div>
             <div className={styles['videos-container']}>
                 <div className={styles['video-container']}>
-                    <video autoPlay ref={userVideo} muted/>
-                    <div>
-                        <button onClick={toggleMic} type="button">
-                            {micActive ? 'Mute Mic' : 'UnMute Mic'}
-                        </button>
-                        <button onClick={leaveRoom} type="button">
-                            Leave
-                        </button>
-                        <button onClick={toggleCamera} type="button">
-                            {cameraActive ? 'Stop Camera' : 'Start Camera'}
-                        </button>
-                    </div>
+                    <video autoPlay ref={userVideo} muted className={styles['video-me']}/>
                 </div>
                 <div className={styles['video-container']}>
                     <video autoPlay ref={partnerVideo}/>
+                </div>
+                <div className={styles['video-buttons']}>
+                    <button onClick={toggleMic} type="button">
+                        {micActive ? 'Mute Mic' : 'UnMute Mic'}
+                    </button>
+                    <button onClick={leaveRoom} type="button">
+                        Leave
+                    </button>
+                    <button onClick={toggleCamera} type="button">
+                        {cameraActive ? 'Stop Camera' : 'Start Camera'}
+                    </button>
                 </div>
             </div>
         </div>

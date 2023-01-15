@@ -1,3 +1,26 @@
 .videos-container {
-    
+    width: 100%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.video-me {
+    max-width: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 3px solid green;
+}
+
+.video-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.video-buttons button {
+    width: 100px;
+    height: 25px;
 }
