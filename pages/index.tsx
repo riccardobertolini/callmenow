@@ -23,7 +23,7 @@ export default function Home({handleCredChange, handleLogin}: Props) {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Let's chat now!</title>
+                <title>Online Chat By Riccardo Bertolini</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
