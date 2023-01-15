@@ -35,41 +35,27 @@ const Room = () => {
 	const { id: roomName } = router.query
 
 	useEffect(() => {
-		socketRef.current = io()
-
-		// First we join a room
+		socketRef.current = io('/')
 
 		socketRef.current.emit('join', roomName)
 
 		socketRef.current.on('joined', handleRoomJoined)
 
-		// If the room didn't exist, the server would emit the room was 'created'
-
 		socketRef.current.on('created', handleRoomCreated)
-
-		// Whenever the next person joins, the server emits 'ready'
 
 		socketRef.current.on('ready', initiateCall)
 
-		// Emitted when a peer leaves the room
-
 		socketRef.current.on('leave', onPeerLeave)
-
-		// If the room is full, we show an alert
 
 		socketRef.current.on('full', () => {
 			window.location.href = '/'
 		})
-
-		// Event called when a remote user initiating the connection and
 
 		socketRef.current.on('offer', handleReceivedOffer)
 
 		socketRef.current.on('answer', handleAnswer)
 
 		socketRef.current.on('ice-candidate', handlerNewIceCandidateMsg)
-
-		// clear up after
 
 		return () => socketRef.current.disconnect()
 	}, [roomName])
@@ -192,28 +178,10 @@ const Room = () => {
 		}
 	}
 
-	/**
-
-     * Takes a userid which is also the socketid and returns a WebRTC Peer
-
-     *
-
-     * @param  {string} userId Represents who will receive the offer
-
-     * @returns {RTCPeerConnection} peer
-
-     */
-
 	const createPeerConnection = () => {
-		// We create a RTC Peer Connection
-
 		const connection = new RTCPeerConnection(ICE_SERVERS)
 
-		// We implement our onicecandidate method for when we received a ICE candidate from the STUN server
-
 		connection.onicecandidate = handleICECandidateEvent
-
-		// We implement our onTrack method for when we receive tracks
 
 		connection.ontrack = handleTrackEvent
 
@@ -309,12 +277,12 @@ const Room = () => {
 	}
 
 	const leaveRoom = () => {
-		socketRef.current.emit('leave', roomName) // Let's the server know that user has left the room.
+		socketRef.current.emit('leave', roomName)
 
 		if (userVideoRef.current.srcObject) {
 			userVideoRef.current.srcObject
 				.getTracks()
-				.forEach((track) => track.stop()) // Stops receiving all track of User.
+				.forEach((track) => track.stop())
 		}
 
 		if (peerVideoRef.current.srcObject) {
@@ -322,10 +290,8 @@ const Room = () => {
 
 				.getTracks()
 
-				.forEach((track) => track.stop()) // Stops receiving audio track of Peer.
+				.forEach((track) => track.stop())
 		}
-
-		// Checks if there is peer on the other side and safely closes the existing connection established with the peer.
 
 		if (rtcConnectionRef.current) {
 			rtcConnectionRef.current.ontrack = null
