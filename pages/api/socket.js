@@ -1,12 +1,6 @@
 import { Server } from 'socket.io'
 
-const SocketHandler = (
-	req: any,
-	res: {
-		socket: { server: any }
-		end: () => any
-	}
-) => {
+const SocketHandler = (req, res) => {
 	if (res.socket.server.io) {
 		console.log('Socket is already attached')
 
@@ -44,14 +38,11 @@ const SocketHandler = (
 			socket.broadcast.to(roomName).emit('ready')
 		})
 
-		socket.on(
-			'ice-candidate',
-			(candidate: RTCIceCandidate, roomName: string) => {
-				console.log(candidate)
+		socket.on('ice-candidate', (candidate, roomName) => {
+			console.log(candidate)
 
-				socket.broadcast.to(roomName).emit('ice-candidate', candidate)
-			}
-		)
+			socket.broadcast.to(roomName).emit('ice-candidate', candidate)
+		})
 
 		socket.on('offer', (offer, roomName) => {
 			socket.broadcast.to(roomName).emit('offer', offer)

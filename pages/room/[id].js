@@ -35,7 +35,7 @@ const Room = () => {
 	const { id: roomName } = router.query
 
 	useEffect(() => {
-		socketRef.current = io('https://callmenow-livid.vercel.app/')
+		socketRef.current = io()
 
 		socketRef.current.emit('join', roomName)
 
