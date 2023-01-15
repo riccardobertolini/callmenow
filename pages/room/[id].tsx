@@ -285,7 +285,7 @@ export default function Room({userName, roomName}: Props) {
                 <div className={styles['video-container']}>
                     <video autoPlay ref={userVideo} muted className={styles['video-me']}/>
                 </div>
-                <div className={styles['video-container']}>
+                <div className={styles['video-container video-partner']}>
                     <video autoPlay ref={partnerVideo}/>
                 </div>
                 <div className={styles['video-buttons']}>

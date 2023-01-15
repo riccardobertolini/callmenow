@@ -1,7 +1,12 @@
 .videos-container {
     width: 100%;
     margin: auto;
+    position: relative;
     max-width: 1200px;
+}
+
+.video-partner {
+    width: 100%;
 }
 
 .video-me {
