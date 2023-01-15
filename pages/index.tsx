@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 
 
 interface Props {
-    handleCredChange: (userName: string, roomName: string) => void;
+    handleCredChange: (roomName: string) => void;
     handleLogin: () => void;
 }
 
@@ -14,11 +14,10 @@ interface EventProps {
 
 export default function Home({handleCredChange, handleLogin}: Props) {
     const [roomName, setRoomName] = useState('')
-    const [userName, setUserName] = useState('')
 
     useEffect(() => {
-        handleCredChange(userName, roomName)
-    }, [roomName, userName, handleCredChange])
+        handleCredChange(roomName)
+    }, [roomName, handleCredChange])
 
 
     return (
@@ -31,7 +30,7 @@ export default function Home({handleCredChange, handleLogin}: Props) {
             <form className={styles.main} onSubmit={handleLogin} autoComplete="off">
                 <h1>📽️📞 CallMeNow</h1>
                 <h5>WebRTC API with NextJS and Pusher</h5>
-                
+
                 <input onChange={(event: EventProps) => setRoomName(event.target.value)}
                        value={roomName}
                        className={styles['room-name']}
