@@ -29,18 +29,20 @@ export default function Home({handleCredChange, handleLogin}: Props) {
             </Head>
 
             <form className={styles.main} onSubmit={handleLogin} autoComplete="off">
-                <h1>📽️📞 CallMeNow</h1>
-                <h5>WebRTC API with NextJS and Pusher</h5>
+                <div className={styles.imgContainer}>
+                    <img src="/pattern.png" alt=""/>
+                </div>
+                <h2>Get your video conference room</h2>
                 <input onChange={(event) => setUserName(event.target.value)}
                        className={styles['room-name']}
-                       placeholder="Enter name"
+                       placeholder="Enter your name"
                        data-lpignore="true"/>
                 <input onChange={(event: EventProps) => setRoomName(event.target.value)}
                        value={roomName}
                        className={styles['room-name']}
                        placeholder="Enter Room Name"
                        data-lpignore="true"/>
-                <button type="submit" className={styles['join-room']}>Join Room</button>
+                <button type="submit" className={styles['join-room']}>Join/Create Room</button>
             </form>
         </div>
     )
