@@ -6,5 +6,5 @@
 
 [Click here](https://callmenow-livid.vercel.app/) for checking a real time demo.
 
-The demo is using the free PUSHER API for demonstration purposes. so restrictions are set: do not use for longer than 2
+The demo uses the free PUSHER API for demonstration purposes. so restrictions are set: do not use for longer than 2
 minutes calls.
